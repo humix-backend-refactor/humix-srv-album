@@ -6,7 +6,7 @@ export class Album{
     id: string
 
     @Column()
-    usuario: number
+    usuario: number[]
 
     @Column()
     nome: string

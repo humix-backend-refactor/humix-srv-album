@@ -4,6 +4,6 @@ import { authenticateJWT } from "./middleware"
 
 const router = Router()
 
-router.post("/teste", authenticateJWT, AlbumController.teste)
+router.post("/teste", authenticateJWT, AlbumController.adicionarAlbum)
 
 export default router

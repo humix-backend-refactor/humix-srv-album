@@ -6,10 +6,18 @@ const albumService = new AlbumService()
 
 export const AlbumController = {
 
-    async teste(req: Request, res: Response, next: NextFunction): Promise<void>{
-        logger.debug(req.userId)
+    async adicionarAlbum(req: Request, res: Response, next: NextFunction): Promise<void>{
+        const { nome, banda } = req.body
+        const user = req.userId
 
-        res.json({message: req.userId})
+        if (typeof user !== "number") {
+            res.status(400).json({ error: "User ID is required" });
+            return;
+        }
+
+        const album = await albumService.criarAlbum(user, nome, banda)
+
+        res.send(200).json({message: album})
     }
 
 }
