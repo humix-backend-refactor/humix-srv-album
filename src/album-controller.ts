@@ -29,6 +29,7 @@ export const AlbumController = {
         }
 
         const albums = await albumService.listarAlbunsPorUsuario(user)
+        res.send(200).json({albums})
     }
 
 }
