@@ -1,3 +1,4 @@
+import { Album } from "./album-model";
 import logger from "./config/logger";
 import { createConnection, getConnectionManager } from "typeorm";
 
@@ -31,7 +32,7 @@ export const connectDB = async () => {
     username: process.env.DB_USER,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
-    entities: [],
+    entities: [Album],
     synchronize: true,
     ssl: true,
     extra: {
