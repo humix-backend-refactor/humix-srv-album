@@ -1,4 +1,3 @@
-import { Album } from "./album-model";
 import logger from "./config/logger";
 import { createConnection, getConnectionManager } from "typeorm";
 
