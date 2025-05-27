@@ -18,6 +18,17 @@ export const AlbumController = {
         const album = await albumService.criarAlbum(user, nome, banda)
 
         res.send(200).json({message: album})
+    },
+
+    async getAlbumsUser(req: Request, res: Response, next: NextFunction){
+        const user = req.userId
+
+        if (typeof user !== "number") {
+            res.status(400).json({ error: "User ID is required" });
+            return;
+        }
+
+        const albums = await albumService.listarAlbunsPorUsuario(user)
     }
 
 }
