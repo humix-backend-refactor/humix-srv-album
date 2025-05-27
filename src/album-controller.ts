@@ -20,11 +20,12 @@ export const AlbumController = {
         res.send(200).json({message: album})
     },
 
-    async getAlbumsUser(req: Request, res: Response, next: NextFunction){
+    async getAlbumsUser(req: Request, res: Response, next: NextFunction): Promise<void>{
         const user = req.userId
 
         if(!user){
-            return res.send(400).json({error: 'Token não fornecido'})
+            res.send(400).json({error: 'Token não fornecido'})
+            return
         }
 
         const albums = await albumService.listarAlbunsPorUsuario(user)
