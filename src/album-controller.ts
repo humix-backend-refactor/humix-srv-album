@@ -6,7 +6,7 @@ const albumService = new AlbumService()
 
 export const AlbumController = {
 
-    async adicionarAlbum(req: Request, res: Response, next: NextFunction): Promise<void>{
+    async adicionarAlbum(req: Request, res: Response, next: NextFunction): Promise<void> {
         const { nome, banda } = req.body
         const user = req.userId
 
@@ -17,20 +17,20 @@ export const AlbumController = {
 
         const album = await albumService.criarAlbum(user, nome, banda)
 
-        res.send(200).json({message: album})
+        res.status(200).json({ message: album })
     },
 
-    async getAlbumsUser(req: Request, res: Response, next: NextFunction): Promise<void>{
+    async getAlbumsUser(req: Request, res: Response, next: NextFunction): Promise<void> {
         const user = req.userId
 
-        if(!user){
-            res.send(400).json({error: 'Token não fornecido'})
+        if (!user) {
+            res.status(400).json({ error: 'Token não fornecido' })
             return
         }
 
         const albums = await albumService.listarAlbunsPorUsuario(user)
         logger.debug(albumService)
-        res.send(200).json({albums: albums})
+        res.status(200).json({ albums: albums })
     }
 
 }
