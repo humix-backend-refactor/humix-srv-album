@@ -10,7 +10,7 @@
     "lib": ["es5", "es6", "dom"],
     "outDir": "./dist",
     "rootDir": "./src",
-    "typeRoots": ["./src/types", "./node_modules/@types"],
+    "typeRoots": ["./src/@types", "./node_modules/@types"],
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "strictPropertyInitialization": false
