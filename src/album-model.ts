@@ -5,9 +5,6 @@ export class Album{
     @PrimaryGeneratedColumn()
     id: string
 
-    @Column("int", { array: true, default: () => "ARRAY[]::INTEGER[]" })
-    usuario: number[]
-
     @Column()
     nome: string
 

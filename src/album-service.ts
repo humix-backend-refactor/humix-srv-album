@@ -7,27 +7,22 @@ export class AlbumService {
         return getRepository(Album)
     }
 
-    async criarAlbum(user: number, nome: string, banda: string) {
+    async criarAlbum(nome: string, banda: string) {
         let album = await this.repo.findOne({ where: { nome, banda } });
 
         if (album) {
-            // Se o usuário já está seguindo, não adiciona de novo
-            if (!album.usuario.includes(user)) {
-                album.usuario.push(user);
-                await this.repo.save(album);
-                logger.info(`Usuário ${user} agora segue o álbum ${nome} (${banda})`);
-            }
+            // Se o álbum já existe, não adiciona de novo
+            await this.repo.save(album);
             return album;
         } else {
-            // Cria novo álbum com o usuário na lista
+            // Cria novo álbum
             album = this.repo.create({
                 nome,
                 banda,
-                usuario: [user],
                 nota: 0 // ou outro valor padrão
             });
             await this.repo.save(album);
-            logger.info(`Álbum ${nome} (${banda}) criado por usuário ${user}`);
+            logger.info(`Álbum ${nome} (${banda}) criado.`);
             return album;
         }
     }

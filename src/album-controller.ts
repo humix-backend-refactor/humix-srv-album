@@ -15,7 +15,7 @@ export const AlbumController = {
             return;
         }
 
-        const album = await albumService.criarAlbum(user, nome, banda)
+        const album = await albumService.criarAlbum(nome, banda)
 
         res.status(200).json({ message: album })
     },
