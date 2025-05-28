@@ -30,7 +30,6 @@ export class AlbumService {
     async listarAlbunsPorUsuario(userId: number) {
         return this.repo
             .createQueryBuilder("album")
-            .where(":userId = ANY(album.usuario)", { userId })
             .getMany();
     }
 }
